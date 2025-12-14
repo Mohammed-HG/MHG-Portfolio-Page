@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from 'react'
 import BurgerMenu from './BurgerMenu';
 import "./App.css";
 import certImg1 from "./assets/freecodecamCert.jpg";
-import certImg2 from "./assets/TVTCCert.jpg";
 
 const PortFolio = function() {
   const aboutRef = useRef(null);
@@ -164,12 +163,6 @@ const PortFolio = function() {
               My Certificates:
             </h2>
             <div className="cert-imgs">
-              {/* أزل div.left-cert-img */}
-              <img 
-                src={certImg2} 
-                alt="TVTC Certificate" 
-                className={`cert-img ${isCertificatesVisible ? 'slide-in-left delay-1' : 'slide-out-left'}`}
-              />
               <img 
                 src={certImg1} 
                 alt="freeCodeCamp Certificate" 
