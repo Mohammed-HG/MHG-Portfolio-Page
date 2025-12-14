@@ -27,7 +27,6 @@ const PortFolio = function() {
 
   useEffect(() => {
     if (!isAboutVisible) {
-      // إعادة التعيين عند الخروج
       setDisplayedText('');
       setCurrentLineIndex(0);
       setCurrentCharIndex(0);
@@ -158,25 +157,24 @@ const PortFolio = function() {
           </div> 
         </section>
         
-        {/* cert Section */}
+        {/* Certification Section */}
         <section ref={certificatesRef} className="certs-section" id="Certificates">
           <div className="cert-section">
-            <h2 className={`text1 ${isCertificatesVisible ? 'fade-in' : 'fade-out'}`}>
+            <h2 className={`text1 ${isCertificatesVisible ? 'slide-in-left' : 'slide-out-left'}`}>
               My Certificates:
             </h2>
             <div className="cert-imgs">
-              <div className="left-cert-img">
-                <img 
-                  src={certImg2} 
-                  alt="TVTC Certificate" 
-                  className={`cert-img ${isCertificatesVisible ? 'slide-in-left' : 'slide-out-left'}`}
-                />
-                <img 
-                  src={certImg1} 
-                  alt="freeCodeCamp Certificate" 
-                  className={`cert-img ${isCertificatesVisible ? 'slide-in-right' : 'slide-out-right'}`}
-                />
-              </div>
+              {/* أزل div.left-cert-img */}
+              <img 
+                src={certImg2} 
+                alt="TVTC Certificate" 
+                className={`cert-img ${isCertificatesVisible ? 'slide-in-left delay-1' : 'slide-out-left'}`}
+              />
+              <img 
+                src={certImg1} 
+                alt="freeCodeCamp Certificate" 
+                className={`cert-img ${isCertificatesVisible ? 'slide-in-right delay-2' : 'slide-out-right'}`}
+              />
             </div>
           </div>
         </section>

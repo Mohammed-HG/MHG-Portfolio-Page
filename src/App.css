@@ -44,7 +44,7 @@ section {
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  max-width: 1800px;
+  max-width: 800px;
   width: 80%;
   margin: 20px auto;
   display: flex;
@@ -67,8 +67,7 @@ section {
   justify-content: space-between;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
-  max-width: 750px;
-  width: 750px;
+  width: 100%;
 }
 
 .terminal-buttons {
@@ -99,9 +98,8 @@ section {
   background-color: #1e1e1e;
   color: #fff;
   font-family: 'Courier New', monospace;
-  max-height: 550px auto;
-  max-width: 750px;
-  width: 750px;
+  min-height: 400px;
+  width: 100%;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
 }
@@ -274,4 +272,281 @@ img {
 
 .delay-2 {
   animation-delay: 0.4s;
+}
+
+@keyframes slideInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (min-width: 1600px) {
+  .hero-section {
+    max-width: 1000px;
+  }
+  
+  .welcome.typed-line {
+    font-size: 3rem;
+  }
+  
+  .my-name.typed-line {
+    font-size: 2.5rem;
+  }
+  
+  .skills.typed-line {
+    font-size: 2rem;
+  }
+  
+  .cert-section {
+    max-width: 1600px;
+  }
+  
+  .text1, .section-title {
+    font-size: 3.5rem;
+  }
+  
+  .cert-imgs {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 60px;
+  }
+  
+  .cert-img, img {
+    max-width: 750px;
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1599px) {
+  .hero-section {
+    max-width: 900px;
+  }
+  
+  .welcome.typed-line {
+    font-size: 2.8rem;
+  }
+  
+  .my-name.typed-line {
+    font-size: 2.3rem;
+  }
+  
+  .skills.typed-line {
+    font-size: 1.8rem;
+  }
+  
+  .cert-section {
+    max-width: 1200px;
+  }
+  
+  .text1, .section-title {
+    font-size: 3rem;
+  }
+  
+  .cert-imgs {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px;
+  }
+  
+  .cert-img, img {
+    max-width: 600px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  section {
+    padding: 30px 15px;
+  }
+  
+  .hero-section {
+    width: 95%;
+    max-width: 700px;
+  }
+  
+  .terminal-body {
+    min-height: 350px;
+    padding: 15px;
+  }
+  
+  .welcome.typed-line {
+    font-size: 2.3rem;
+  }
+  
+  .my-name.typed-line {
+    font-size: 1.9rem;
+  }
+  
+  .skills.typed-line {
+    font-size: 1.5rem;
+  }
+  
+  .cert-section, .projects-content {
+    padding: 50px 15px;
+  }
+  
+  .text1, .section-title {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+  }
+  
+  .cert-imgs {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .cert-img, img {
+    max-width: 550px;
+  }
+  
+  .prompt {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 767px) {
+  section {
+    padding: 20px 10px;
+  }
+  
+  .hero-section {
+    width: 95%;
+    margin: 10px auto;
+    border-radius: 6px;
+  }
+  
+  .terminal-header, .terminal-body {
+    border-radius: 6px;
+  }
+  
+  .terminal-body {
+    min-height: 300px;
+    padding: 15px;
+  }
+  
+  .welcome.typed-line {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+  }
+  
+  .my-name.typed-line {
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+  }
+  
+  .skills.typed-line {
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+  }
+  
+  .cert-section, .projects-content {
+    padding: 40px 10px;
+  }
+  
+  .text1, .section-title {
+    font-size: 2rem;
+    margin-bottom: 30px;
+  }
+  
+  .cert-imgs {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .cert-img, img {
+    max-width: 100%;
+    border-radius: 10px;
+  }
+  
+  .prompt {
+    font-size: 0.9rem;
+  }
+  
+  .terminal-buttons span {
+    width: 10px;
+    height: 10px;
+  }
+  
+  .terminal-title {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 575px) {
+  section {
+    padding: 15px 5px;
+  }
+  
+  .hero-section {
+    width: 98%;
+    margin: 5px auto;
+  }
+  
+  .terminal-body {
+    min-height: 250px;
+    padding: 10px;
+  }
+  
+  .welcome.typed-line {
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+  }
+  
+  .my-name.typed-line {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+  
+  .skills.typed-line {
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+  
+  .cert-section, .projects-content {
+    padding: 30px 5px;
+  }
+  
+  .text1, .section-title {
+    font-size: 1.6rem;
+    margin-bottom: 25px;
+  }
+  
+  .cert-imgs {
+    gap: 20px;
+  }
+  
+  .cert-img, img {
+    border-radius: 8px;
+  }
+  
+  .prompt {
+    font-size: 0.8rem;
+  }
+  
+  .terminal-header {
+    padding: 8px 10px;
+  }
+  
+  .NavBar {
+    padding: 10px;
+    height: 50px;
+  }
 }
