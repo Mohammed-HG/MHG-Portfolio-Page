@@ -21,7 +21,7 @@ body, html{
 }
 
 .main {
-  background: linear-gradient(135deg, #333 0%, #01023b 100%);
+  background: linear-gradient(135deg, #032f61 0%, #01023b 100%);
   width: 100%;
   max-width: 100%;
   padding: 0;
@@ -163,6 +163,28 @@ section {
   margin-bottom: 15px;
 }
 
+.social.typed-line {
+  color: rgb(0, 155, 255);
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+.social-link {
+  color: #4af626;
+  text-decoration: none;
+  font-family: 'Courier New', monospace;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block;
+  margin-top: 10px;
+  border-bottom: 1px dashed #4af626;
+}
+
+.social-link:hover {
+  color: white;
+  border-bottom: 1px solid rgb(255, 255, 255);
+}
 /* ===== Certificates SECTION ===== */
 .certs-section {
   color: white;
@@ -308,11 +330,11 @@ img {
   }
   
   .welcome.typed-line {
-    font-size: 3rem;
+    font-size: 2.3rem;
   }
   
   .my-name.typed-line {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
   
   .skills.typed-line {
@@ -384,7 +406,12 @@ img {
   
   .terminal-body {
     min-height: 350px;
+    max-width: 650px;
     padding: 15px;
+  }
+
+  .terminal-header {
+    max-width: 650px
   }
   
   .welcome.typed-line {
