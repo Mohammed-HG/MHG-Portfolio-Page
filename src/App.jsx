@@ -17,11 +17,15 @@ const PortFolio = function() {
   const [currentCharIndex, setCurrentCharIndex] = useState(0);
   const [showCursor, setShowCursor] = useState(true);
   const [isTypingComplete, setIsTypingComplete] = useState(false);
+
+  const LinkedIn = "https://www.linkedin.com/in/mohammed-al-ghareeb/";
   
   const lines = [
     "Welcome to my Portfolio Page",
     "I'm Mohammed Alghareeb (MHG)",
-    "Junior Web Developer!"
+    "Junior Web Developer!",
+    "This my LinkedIn Account:",
+    "Click here to LinkedIn"
   ];
 
   useEffect(() => {
@@ -97,11 +101,7 @@ const PortFolio = function() {
           if (sectionId === 'About') setIsAboutVisible(true);
           if (sectionId === 'Certificates') setIsCertificatesVisible(true);
           if (sectionId === 'Projects') setIsProjectsVisible(true);
-        } else {
-          if (sectionId === 'About') setIsAboutVisible(false);
-          if (sectionId === 'Certificates') setIsCertificatesVisible(false);
-          if (sectionId === 'Projects') setIsProjectsVisible(false);
-        }
+        } 
       });
     }, observerOptions);
 
@@ -121,12 +121,17 @@ const PortFolio = function() {
     const textLines = displayedText.split('\n');
     
     return textLines.map((line, index) => {
+      const isLastLine = index === textLines.length - 1;
       if (index === 0 && line) {
-        return <h1 key={index} className="welcome typed-line">{line}</h1>;
+        return <h1 key={index} className="welcome typed-line">{line} {isLastLine && <span className="cursor">█</span>}</h1>;
       } else if (index === 1 && line) {
-        return <h3 key={index} className="my-name typed-line">{line}</h3>;
+        return <h3 key={index} className="my-name typed-line">{line} {isLastLine && <span className="cursor">█</span>}</h3>;
       } else if (index === 2 && line) {
-        return <p key={index} className="skills typed-line">{line}</p>;
+        return <p key={index} className="skills typed-line">{line} {isLastLine && <span className="cursor">█</span>}</p>;
+      } else if (index === 3 && line) {
+        return <p key={index} className="social typed-line">{line} {isLastLine && <span className="cursor">█</span>}</p>;
+      } else if (index === 4 && line) {
+        return <a key={index} href={LinkedIn} target="_blank" className="social-link typed-line">{line} {isLastLine && <span className="cursor">█</span>}</a>;
       }
       return null;
     });
@@ -151,7 +156,6 @@ const PortFolio = function() {
             <div className="prompt">mhg@portfolio:~$ MHG-Portfolio.exe</div>
             <div className="typing-text">
               {renderTypedText()}
-              <span className={`cursor ${showCursor ? 'visible' : ''}`}>█</span>
             </div>
           </div> 
         </section>
