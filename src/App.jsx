@@ -26,7 +26,7 @@ const PortFolio = function() {
     "Junior Web Developer!",
     "This my LinkedIn Account:",
     "Click here to LinkedIn"
-  ];
+    ];
 
   useEffect(() => {
     if (!isAboutVisible) {
