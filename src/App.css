@@ -4,7 +4,7 @@ body, html{
 }
 
 .NavBar {
-  background-color: rgba(5, 20, 50, 0.95);
+  background-color: transparent;
   position: fixed;
   top: 0;
   left: 0;
@@ -21,7 +21,7 @@ body, html{
 }
 
 .main {
-  background: linear-gradient(135deg, #032f61 0%, #01023b 100%);
+  background: linear-gradient(135deg, #04648a 0%, #01023b 100%);
   width: 100%;
   max-width: 100%;
   padding: 0;
@@ -188,8 +188,15 @@ section {
 /* ===== Certificates SECTION ===== */
 .certs-section {
   color: white;
-  width: 100%;
   border-top: 3px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  max-width: 800px;
+  width: 85%;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .cert-section {
@@ -240,6 +247,14 @@ section {
   color: white;
   width: 100%;
   border-top: 3px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  max-width: 800px;
+  width: 85%;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .projects-content {

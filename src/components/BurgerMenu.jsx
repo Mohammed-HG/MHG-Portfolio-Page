@@ -45,6 +45,7 @@
             <a href="#About" onClick={handleLinkClick}>About Me</a>
             <a href="#Certificates" onClick={handleLinkClick}>Certification</a>
             <a href="#Projects" onClick={handleLinkClick}>My Projects</a>
+            <a href="#Contact" onClick={handleClick}>Contact Me</a>
           </div>
       </div>
     )
