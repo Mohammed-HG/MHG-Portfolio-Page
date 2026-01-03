@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import "../App.css";
+import "../styles/Cert.css";
 import certImg1 from "../assets/freecodecamCert.jpg";
 
 const Certifications = function() {

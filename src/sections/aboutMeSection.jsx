@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import "../App.css";
+import "../styles/AboutMe.css";
 
 const AboutMe = function() {
   const aboutRef = useRef(null);

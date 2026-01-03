@@ -1,0 +1,277 @@
+/* ===== HERO SECTION ===== */
+.hero-section {
+  color: white;
+  overflow: hidden;
+  max-width: 800px;
+  width: 80%;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-section h1,
+.hero-section h3,
+.hero-section p {
+  color: #fff;
+  font-family: 'Courier New', monospace;
+  margin-bottom: 15px;
+}
+
+.terminal-header {
+  display: flex;
+  align-items: center;
+  background: #2d2d2d;
+  padding: 10px 15px;
+  justify-content: space-between;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  width: 100%;
+}
+
+.terminal-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.terminal-buttons span {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.close { background: #ff5f56; }
+.minimize { background: #ffbd2e; }
+.maximize { background: #27ca3f; }
+
+.terminal-title {
+  color: #888;
+  font-size: 0.9rem;
+  flex-grow: 1;
+  text-align: center;
+}
+
+.terminal-body {
+  padding: 10px 15px;
+  background-color: #1e1e1e;
+  color: #fff;
+  font-family: 'Courier New', monospace;
+  min-height: 400px;
+  width: 100%;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.prompt {
+  color: #4af626;
+  margin-bottom: 15px;
+  font-family: 'Courier New', monospace;
+}
+
+.typing-text {
+  color: #fff;
+  line-height: 1.8;
+  white-space: pre-wrap;
+  text-align: left;
+  padding-left: 0;
+}
+
+.cursor {
+  display: inline-block;
+  color: #fff;
+  animation: blink 1s infinite;
+  margin-left: 2px;
+  font-weight: bold;
+}
+
+.cursor.visible {
+  opacity: 1;
+}
+
+.cursor:not(.visible) {
+  opacity: 0;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.typed-line {
+  margin: 0;
+  padding: 0;
+  animation: none !important;
+}
+
+.welcome.typed-line {
+  color: #fff;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.my-name.typed-line {
+  color: #fff;
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+.skills.typed-line {
+  color: #0ff;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+.social.typed-line {
+  color: rgb(0, 155, 255);
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+.social-link {
+  color: #4af626;
+  text-decoration: none;
+  font-family: 'Courier New', monospace;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block;
+  margin-top: 10px;
+  border-bottom: 1px dashed #4af626;
+}
+
+.social-link:hover {
+  color: white;
+  border-bottom: 1px solid rgb(255, 255, 255);
+}
+
+@media (min-width: 1200px) and (max-width: 1599px) {
+  .hero-section {
+    max-width: 900px;
+  }
+  
+  .welcome.typed-line {
+    font-size: 2.8rem;
+  }
+  
+  .my-name.typed-line {
+    font-size: 2.3rem;
+  }
+  
+  .skills.typed-line {
+    font-size: 1.8rem;
+  }
+  
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .hero-section {
+    width: 95%;
+    max-width: 700px;
+  }
+  
+  .terminal-body {
+    min-height: 350px;
+    max-width: 650px;
+    padding: 15px;
+  }
+
+  .terminal-header {
+    max-width: 650px
+  }
+  
+  .welcome.typed-line {
+    font-size: 2.3rem;
+  }
+  
+  .my-name.typed-line {
+    font-size: 1.9rem;
+  }
+  
+  .skills.typed-line {
+    font-size: 1.5rem;
+  }
+  
+  .prompt {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 767px) {  
+  .hero-section {
+    width: 95%;
+    margin: 10px auto;
+    border-radius: 6px;
+  }
+  
+  .terminal-header, .terminal-body {
+    border-radius: 6px;
+  }
+  
+  .terminal-body {
+    min-height: 300px;
+    padding: 15px;
+  }
+  
+  .welcome.typed-line {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+  }
+  
+  .my-name.typed-line {
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+  }
+  
+  .skills.typed-line {
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+  }
+  
+  .prompt {
+    font-size: 0.9rem;
+  }
+  
+  .terminal-buttons span {
+    width: 10px;
+    height: 10px;
+  }
+  
+  .terminal-title {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 575px) {
+  .hero-section {
+    width: 98%;
+    margin: 5px auto;
+  }
+  
+  .terminal-body {
+    min-height: 250px;
+    padding: 10px;
+  }
+  
+  .welcome.typed-line {
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+  }
+  
+  .my-name.typed-line {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+  
+  .skills.typed-line {
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+  
+  .prompt {
+    font-size: 0.8rem;
+  }
+  
+  .terminal-header {
+    padding: 8px 10px;
+  }
+}

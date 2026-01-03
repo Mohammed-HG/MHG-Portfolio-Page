@@ -1,0 +1,30 @@
+/* ===== PROJECTS SECTION ===== */
+.projects-section {
+  color: white;
+  width: 100%;
+  border-top: 3px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  max-width: 800px;
+  width: 85%;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.projects-content {
+  text-align: center;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 60px 20px;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
