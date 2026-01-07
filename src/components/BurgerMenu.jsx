@@ -42,10 +42,8 @@
 
           <div className="menu-content">
             <br />
-            <a href="#About" onClick={handleLinkClick}>About Me</a>
-            <a href="#Certificates" onClick={handleLinkClick}>Certification</a>
-            <a href="#Projects" onClick={handleLinkClick}>My Projects</a>
-            <a href="#Contact" onClick={handleClick}>Contact Me</a>
+            <a href="#About" onClick={handleLinkClick}>About me</a>
+            <a href="#Contact" onClick={handleClick}>Contact</a>
           </div>
       </div>
     )

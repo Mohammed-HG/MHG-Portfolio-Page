@@ -7,6 +7,7 @@ const Certifications = function() {
 
   const [isCertificatesVisible, setIsCertificatesVisible] = useState(false);
 
+  const cert1 = "https://www.freecodecamp.org/certification/mohammed-hg/responsive-web-design";
 
   useEffect(() => {
     const observerOptions = {
@@ -42,15 +43,33 @@ const Certifications = function() {
         {/* Certification Section */}
         <section ref={certificatesRef} className="certs-section" id="Certificates">
           <div className="cert-section">
-            <h2 className={`text1 ${isCertificatesVisible ? 'slide-in-left' : 'slide-out-left'}`}>
-              My Certificates:
-            </h2>
-            <div className="cert-imgs">
-              <img 
-                src={certImg1} 
-                alt="freeCodeCamp Certificate" 
-                className={`cert-img ${isCertificatesVisible ? 'slide-in-right delay-2' : 'slide-out-right'}`}
+            <div
+              className={`cert-card ${isCertificatesVisible ? 'slide-in-right delay-2' : 'slide-out-right'}`}
+            >
+              <img
+                src={certImg1}
+                alt="freeCodeCamp Certificate"
+                className="cert-card-img"
               />
+
+              <div className="cert-card-body">
+                <span className="cert-badge">
+                  freeCodeCamp
+                </span>
+
+                <h5 className="cert-title">
+                  Responsive Web Design Certification
+                </h5>
+
+                <a
+                  href={cert1}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="cert-btn"
+                >
+                  View Certificate →
+                </a>
+              </div>
             </div>
           </div>
         </section>
