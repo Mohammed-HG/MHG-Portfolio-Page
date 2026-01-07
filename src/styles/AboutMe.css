@@ -4,7 +4,7 @@
   overflow: hidden;
   max-width: 800px;
   width: 80%;
-  margin: 20px auto;
+  margin: auto;
   display: flex;
   flex-direction: column;
 }
@@ -25,7 +25,7 @@
   justify-content: space-between;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
-  width: 100%;
+  width: 75%;
 }
 
 .terminal-buttons {
@@ -53,19 +53,29 @@
 
 .terminal-body {
   padding: 10px 15px;
-  background-color: #1e1e1e;
+  background-color: #080808;
   color: #fff;
   font-family: 'Courier New', monospace;
-  min-height: 400px;
-  width: 100%;
+  min-height: 300px;
+  width: 75%;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
 }
 
 .prompt {
-  color: #4af626;
-  margin-bottom: 15px;
-  font-family: 'Courier New', monospace;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.prompt-prefix {
+  color: #4CAF50;
+  font-family: monospace;
+}
+
+.label-typing {
+  color: #4CAF50;
+  font-weight: bold;
+  margin-left: 5px;
 }
 
 .typing-text {
@@ -105,43 +115,26 @@
 
 .welcome.typed-line {
   color: #fff;
-  font-size: 2.5rem;
+  font-size: 1rem;
   margin-bottom: 20px;
 }
 
 .my-name.typed-line {
-  color: #fff;
-  font-size: 2rem;
+  color: #d10101d3;
+  font-size: 1rem;
   margin-bottom: 15px;
 }
 
 .skills.typed-line {
   color: #0ff;
-  font-size: 1.5rem;
+  font-size: 1rem;
   margin-bottom: 15px;
 }
 
 .social.typed-line {
-  color: rgb(0, 155, 255);
-  font-size: 1.5rem;
-  margin-bottom: 15px;
-}
-
-.social-link {
-  color: #4af626;
-  text-decoration: none;
-  font-family: 'Courier New', monospace;
+  color: rgb(0, 255, 157);
   font-size: 1.2rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: inline-block;
-  margin-top: 10px;
-  border-bottom: 1px dashed #4af626;
-}
-
-.social-link:hover {
-  color: white;
-  border-bottom: 1px solid rgb(255, 255, 255);
+  margin-bottom: 15px;
 }
 
 @media (min-width: 1200px) and (max-width: 1599px) {
@@ -150,15 +143,15 @@
   }
   
   .welcome.typed-line {
-    font-size: 2.8rem;
+    font-size: 1rem;
   }
   
   .my-name.typed-line {
-    font-size: 2.3rem;
+    font-size: 1rem;
   }
   
   .skills.typed-line {
-    font-size: 1.8rem;
+    font-size: 1rem;
   }
   
 }
@@ -170,7 +163,7 @@
   }
   
   .terminal-body {
-    min-height: 350px;
+    min-height: 250px;
     max-width: 650px;
     padding: 15px;
   }
@@ -180,15 +173,15 @@
   }
   
   .welcome.typed-line {
-    font-size: 2.3rem;
+    font-size: 1rem;
   }
   
   .my-name.typed-line {
-    font-size: 1.9rem;
+    font-size: 1rem;
   }
   
   .skills.typed-line {
-    font-size: 1.5rem;
+    font-size: 1rem;
   }
   
   .prompt {
@@ -203,27 +196,23 @@
     border-radius: 6px;
   }
   
-  .terminal-header, .terminal-body {
-    border-radius: 6px;
-  }
-  
   .terminal-body {
-    min-height: 300px;
+    min-height: 200px;
     padding: 15px;
   }
   
   .welcome.typed-line {
-    font-size: 1.8rem;
+    font-size: 1rem;
     margin-bottom: 15px;
   }
   
   .my-name.typed-line {
-    font-size: 1.5rem;
+    font-size: 1rem;
     margin-bottom: 12px;
   }
   
   .skills.typed-line {
-    font-size: 1.2rem;
+    font-size: 1rem;
     margin-bottom: 12px;
   }
   
@@ -248,17 +237,17 @@
   }
   
   .terminal-body {
-    min-height: 250px;
+    min-height: 200px;
     padding: 10px;
   }
   
   .welcome.typed-line {
-    font-size: 1.5rem;
+    font-size: 1rem;
     margin-bottom: 12px;
   }
   
   .my-name.typed-line {
-    font-size: 1.2rem;
+    font-size: 1rem;
     margin-bottom: 10px;
   }
   

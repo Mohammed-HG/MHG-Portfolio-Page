@@ -13,10 +13,16 @@
     cursor: pointer;
     transition: 0.5s ease;
     width: fit-content;
+    position: absolute;
+    left: 70%;
+    top: 20px;
 }
 
 .card.show {
     padding-bottom: 20px;
+    position: absolute;
+    left: 70%;
+    top: 20px;
     
 }
 
@@ -52,7 +58,7 @@
 }
 
 .menu-content a:hover {
-  color: orange;
+  color: #615f5f;
 }
 
 

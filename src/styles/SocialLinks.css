@@ -1,0 +1,71 @@
+.social-card {
+  position: relative;
+  max-width: 280px;
+  max-height: fit-content;
+  padding: 24px;
+  border-radius: 14px;
+  background: rgba(51, 51, 51, 0.205);
+  border: 1px solid rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+
+.social-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.social-avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  margin-bottom: 32px;
+}
+
+.social-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 32px;
+}
+
+.user-name {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 8px;
+}
+
+.user-skill {
+  font-size: 14px;
+  color: #b9b8b8;
+  text-align: center;
+}
+
+a.click-btn1 {
+  background: #566ccc;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+a.click-btn2 {
+  background: #505050;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+.click-btn1:hover,
+.click-btn2:hover {
+  background: #2e69d6;
+}
+
+.social-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  display: inline-block;
+}

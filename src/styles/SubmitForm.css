@@ -63,8 +63,7 @@
 }
 
 .submit-btn:hover {
-  transform: translateY(-3px);
-  background: #0408f0;
+  background: #367bfc;
 }
 
 .status-message {
