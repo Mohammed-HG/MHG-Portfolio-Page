@@ -69,3 +69,11 @@ a.click-btn2 {
   flex-shrink: 0;
   display: inline-block;
 }
+
+@media (max-width: 480px) {
+  .social-card {
+    max-width: 300px;
+    padding: 20px;
+  }
+  
+}

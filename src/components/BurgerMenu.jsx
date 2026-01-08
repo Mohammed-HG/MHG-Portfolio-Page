@@ -14,14 +14,14 @@
     }
 
     return(
-      <div className={`card ${open ? "show" : ""}`} onClick={handleClick}>
+      <div className={`burger-card ${open ? "show" : ""}`} onClick={handleClick}>
         <div className="row">
           <div className="title">Menu</div>
             <svg
               width="32"
               height="32"
               viewBox="0 0 100 100"
-              className={open ? "icon open" : "icon"}
+              className={open ? "burger-icon open" : "burger-icon"}
             >
               <path
                 className="path1"

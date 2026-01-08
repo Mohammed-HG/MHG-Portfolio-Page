@@ -264,3 +264,49 @@
     padding: 8px 10px;
   }
 }
+
+@media (max-width: 480px) {
+  .hero-section {
+    width: 98%;
+    margin: 5px auto;
+  }
+
+  .terminal-header {
+    max-width: 300px;
+    width: 100%;
+  }
+  
+  .terminal-body {
+    min-height: fit-content;
+    max-width: 300px;
+    width: 100%;
+    padding: 10px;
+  }
+  
+  .welcome.typed-line {
+    font-size: 0.6rem;
+    margin-bottom: 12px;
+  }
+  
+  .my-name.typed-line {
+    font-size: 0.6rem;
+    margin-bottom: 10px;
+  }
+  
+  .skills.typed-line {
+    font-size: 0.6rem;
+    margin-bottom: 10px;
+  }
+  
+  .prompt {
+    font-size: 0.6rem;
+  }
+
+  .social.typed-line {
+    font-size: 0.7rem;
+  }
+  
+  .terminal-header {
+    padding: 8px 10px;
+  }
+}

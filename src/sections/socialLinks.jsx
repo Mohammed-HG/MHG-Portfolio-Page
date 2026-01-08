@@ -1,15 +1,14 @@
 import { useState } from "react";
 import "../styles/SocialLinks.css";
-
+import ProfileImg from "../assets/MHG_ProfileImg.jpg";
+import GitHubImg from "../assets/github-logo.png";
 const SocialLinks = () => {
   const [open, setOpen] = useState(false);
 
   const GitHubLink = "https://github.com/Mohammed-HG";
   const LinkedInLink = "https://www.linkedin.com/in/mohammed-al-ghareeb/";
-
-  const ProfileImg = "src/assets/MHG_ProfileImg.jpg";
-  const GitHubImg = "src/assets/github-logo.png";
   const LinkedInImg = "https://cdn-icons-png.flaticon.com/512/174/174857.png";
+
 
   return (
     <div className="social-card">
