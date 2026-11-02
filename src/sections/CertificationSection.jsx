@@ -1,80 +1,41 @@
-import { useState, useEffect, useRef } from 'react'
 import "../styles/Cert.css";
-import certImg1 from "../assets/freecodecamCert.jpg";
-
-const Certifications = function() {
-  const certificatesRef = useRef(null);
-
-  const [isCertificatesVisible, setIsCertificatesVisible] = useState(false);
-
-  const cert1 = "https://www.freecodecamp.org/certification/mohammed-hg/responsive-web-design";
-
-  useEffect(() => {
-    const observerOptions = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.3
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        const sectionId = entry.target.id;
-
-        if (entry.isIntersecting) {
-          if (sectionId === 'Certificates') setIsCertificatesVisible(true);
-        } 
-      });
-    }, observerOptions);
-
-    const sections = [certificatesRef.current];
-    sections.forEach(section => {
-      if (section) observer.observe(section);
-    });
-
-    return () => {
-      sections.forEach(section => {
-        if (section) observer.unobserve(section);
-      });
-    };
-  }, []);
-
-  return(
-    <>
-        {/* Certification Section */}
-        <section ref={certificatesRef} className="certs-section" id="Certificates">
-          <div className="cert-section">
-            <div
-              className={`cert-card ${isCertificatesVisible ? 'slide-in-right delay-2' : 'slide-out-right'}`}
-            >
-              <img
-                src={certImg1}
-                alt="freeCodeCamp Certificate"
-                className="cert-card-img"
-              />
-
-              <div className="cert-card-body">
-                <span className="cert-badge">
-                  freeCodeCamp
-                </span>
-
-                <h5 className="cert-title">
-                  Responsive Web Design Certification
-                </h5>
-
-                <a
-                  href={cert1}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="cert-btn"
-                >
-                  View Certificate →
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-    </>
+import certificate from "../assets/freecodecamCert.jpg";
+export default function Certifications() {
+  return (
+    <div className="certificate-layout">
+      <a
+        className="certificate-image-link"
+        href="https://www.freecodecamp.org/certification/mohammed-hg/responsive-web-design"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="View my Responsive Web Design certificate"
+      >
+        <img
+          src={certificate}
+          width="1625"
+          height="1016"
+          alt="Mohammed Alghareeb's freeCodeCamp Responsive Web Design certificate"
+          loading="lazy"
+          decoding="async"
+        />
+      </a>
+      <div className="certificate-copy">
+        <p className="eyebrow">LEARNING MILESTONE</p>
+        <span className="certificate-badge">freeCodeCamp</span>
+        <h3>Responsive Web Design</h3>
+        <p>
+          A foundation in HTML, CSS and building layouts that adapt to different
+          screens.
+        </p>
+        <a
+          className="button button-secondary"
+          href="https://www.freecodecamp.org/certification/mohammed-hg/responsive-web-design"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          View verified certificate ↗
+        </a>
+      </div>
+    </div>
   );
 }
-
-export default Certifications;

@@ -1,30 +1,102 @@
-/* ===== PROJECTS SECTION ===== */
-.projects-section {
-  color: white;
-  width: 100%;
-  border-top: 3px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  max-width: 800px;
-  width: 85%;
-  margin: 20px auto;
+.project-layout {
+  display: grid;
+  grid-template-columns: 0.85fr 1.2fr;
+  gap: 48px;
+  align-items: center;
+}
+.project-visual {
+  min-height: 275px;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  border-radius: 12px;
+  background:
+    radial-gradient(ellipse at 30% 20%, #28555e88, transparent 80%), #10262f;
+  border: 1px solid #35575e;
+  position: relative;
+  overflow: hidden;
 }
-
-.projects-content {
-  text-align: center;
-  max-width: 800px;
+.project-visual::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(#8ad8cf33 1px, transparent 1px);
+  background-size: 17px 17px;
+}
+.qr-mark {
+  position: relative;
+  background: #c1f0e5;
+  padding: 16px;
+  width: 155px;
+  height: 155px;
+  border-radius: 17px;
+  transform: rotate(-5deg);
+  box-shadow: 0 15px 35px #0003;
+}
+.qr-mark svg {
   width: 100%;
-  margin: 0 auto;
-  padding: 60px 20px;
+  height: 100%;
+  fill: none;
+  stroke: #12363c;
+  stroke-width: 7;
+  stroke-linejoin: round;
+  stroke-linecap: square;
 }
-
-.section-title {
-  font-size: 2.5rem;
-  margin-bottom: 40px;
-  opacity: 0;
-  transform: translateY(30px);
+.visual-label {
+  position: relative;
+  color: #afdbd4;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  font-family: monospace;
 }
-
+.project-copy .eyebrow {
+  margin-bottom: 14px;
+}
+.project-copy h3 {
+  margin-bottom: 20px;
+}
+.project-copy > p:not(.eyebrow) {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+.technology-tags {
+  list-style: none;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0 0 27px;
+}
+.technology-tags li {
+  font-family: monospace;
+  font-size: 11px;
+  padding: 6px 10px;
+  border: 1px solid #3e5068;
+  border-radius: 5px;
+  color: #baccde;
+}
+.project-links {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.project-links .button {
+  font-size: 13px;
+  padding-inline: 18px;
+}
+@media (max-width: 760px) {
+  .project-layout {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .project-visual {
+    min-height: 230px;
+  }
+  .project-copy > p:not(.eyebrow) {
+    font-size: 14px;
+  }
+}

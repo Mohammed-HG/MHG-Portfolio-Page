@@ -1,40 +1,57 @@
-const path = require('path');
-require('dotenv').config();
-const express = require('express');
-const helmet = require('helmet');
-const cors = require('cors');
-const rateLimit = require('express-rate-limit');
-const contactRouter = require('./routes/contact');
-
-const app = express();
-
-app.use(helmet.contentSecurityPolicy({
-  directives: {
-    defaultSrc: ["'self'"],
-    styleSrc: ["'self'", "'unsafe-inline'"],
-    scriptSrc: ["'self'"],
-    imgSrc: ["'self'", "data:", "https:"],
-    connectSrc: ["'self'"],
-    fontSrc: ["'self'"],
-    objectSrc: ["'none'"],
-    mediaSrc: ["'self'"],
-    frameSrc: ["'none'"]
-  }
-}));
-
-app.use(express.json({ limit: '10kb' }));
-app.use(express.urlencoded({ extended: true, limit: '10kb' }));
-
-app.use(cors({ origin: process.env.CLIENT_ORIGIN || 'https://mohammed-hg-portfolio.netlify.app/' }));
-
-app.use(rateLimit({ windowMs: 60 * 1000, max: 60, standardHeaders: true, legacyHeaders: false }));
-
-app.use('/api/contact', contactRouter);
-
-if (process.env.SERVE_STATIC === 'true') {
-  app.use(express.static(path.join(__dirname, 'dist')));
-  app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'dist', 'index.html')));
+require("dotenv").config({ quiet: true });
+const { configFromEnv } = require("./config");
+const { createMailer } = require("./services/mailer");
+const { createApp } = require("./app");
+function start() {
+  const config = configFromEnv();
+  const mailer = createMailer();
+  const verifyCaptcha = async (token) => {
+    const response = await fetch(
+      "https://www.google.com/recaptcha/api/siteverify",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({
+          secret: config.captchaSecret,
+          response: token,
+        }),
+        signal: AbortSignal.timeout(8000),
+      },
+    );
+    if (!response.ok) throw new Error("Verification unavailable.");
+    return response.json();
+  };
+  if (!mailer.ready || !config.captchaSecret)
+    console.warn(
+      "Contact delivery unavailable: complete mail and verification configuration.",
+    );
+  const app = createApp({ config, mailer, verifyCaptcha });
+  const server = app.listen(config.port, "0.0.0.0", () =>
+    console.log("Portfolio server listening on " + config.port),
+  );
+  server.requestTimeout = 20000;
+  server.headersTimeout = 10000;
+  let closing = false;
+  const stop = () => {
+    if (closing) return;
+    closing = true;
+    const timeout = setTimeout(() => process.exit(1), 10000);
+    timeout.unref();
+    server.close(() => {
+      mailer.close?.();
+      clearTimeout(timeout);
+    });
+  };
+  process.on("SIGTERM", stop);
+  process.on("SIGINT", stop);
+  return server;
 }
-
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server listening on ${PORT}`));
+if (require.main === module) {
+  try {
+    start();
+  } catch {
+    console.error("Startup failed: check server configuration.");
+    process.exitCode = 1;
+  }
+}
+module.exports = { start };

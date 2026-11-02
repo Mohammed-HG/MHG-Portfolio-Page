@@ -1,98 +1,64 @@
-@media (max-width: 758px) {
-  .row {
-    width: auto;
-    min-width: 100px;
-  }
+.navigation-menu {
+  position: relative;
+  flex-shrink: 0;
 }
-
-.burger-card {
-    background: #333;
-    padding: 15px 25px;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-    cursor: pointer;
-    transition: 0.5s ease;
-    width: fit-content;
-    right: 20px;
-    top: 10px;
-    position: fixed;
-}
-
-.burger-card.show {
-    padding-bottom: 20px;
-    top: 30px;
-}
-
-
-.row {
-    width: 150px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-}
-
-.menu-content {
+.menu-trigger {
   display: flex;
-  flex-direction: column;
-  gap: 12px;
-  max-height: 0;
-  opacity: 0;          
-  transition: 0.35s ease;
-  padding-left: 5px;
-}
-
-.burger-card.show .menu-content {
-  max-height: 300px;
-  opacity: 1;
-}
-
-.menu-content a {
-  color: #cccccc;
-  text-decoration: none;
-  padding: 8px 0;
-  transition: color 0.3s ease;
-}
-
-.menu-content a:hover {
-  color: #615f5f;
-}
-
-
-.title {
-  font-size: 18px;
+  align-items: center;
+  gap: 18px;
+  border: 1px solid #35475e;
+  background: #132136;
+  color: var(--text);
+  padding: 10px 14px;
+  min-height: 44px;
+  border-radius: 8px;
+  font-size: 13px;
   font-weight: 600;
-  color: white;
 }
-
-.burger-icon {
-  stroke: white;
-  stroke-width: 8;
+.menu-trigger svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
   stroke-linecap: round;
-  transition: 0.35s ease;
 }
-
-.burger-icon.open .path1 {
-    transform: translateY(20px) rotate(45deg);
-    transform-origin: 50% 50%;
+.menu-trigger:hover {
+  background: #1b3048;
 }
-
-.burger-icon.open .path2 {
-    opacity: 0;
+.menu-panel {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 14px);
+  width: 240px;
+  padding: 10px;
+  background: #152339;
+  border: 1px solid #40536d;
+  border-radius: 12px;
+  box-shadow: 0 18px 50px #0006;
 }
-
-.burger-icon.open .path3 {
-    transform: translateY(-10px) rotate(-45deg);
-    transform-origin: 50% 50%;
+.menu-panel a {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  text-decoration: none;
+  padding: 14px;
+  border-radius: 7px;
+  font-size: 14px;
 }
-
-.burger-icon path {
-  stroke: white;
-  stroke-width: 8;
-  stroke-linecap: round;
-  transition: all 0.4s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+.menu-panel a span {
+  color: #8b9db6;
+  font-family: monospace;
+  font-size: 11px;
 }
-
-.hr-line {
-    margin: 5px 0 0;
+.menu-panel a:hover {
+  background: #263b54;
+  color: var(--accent);
+}
+@media (max-width: 400px) {
+  .menu-trigger {
+    gap: 10px;
+    padding: 10px 12px;
+  }
+  .brand-detail {
+    font-size: 12px;
+  }
 }

@@ -1,59 +1,48 @@
-import { useState } from "react";
 import "../styles/SocialLinks.css";
-import ProfileImg from "../assets/MHG_ProfileImg.jpg";
-import GitHubImg from "../assets/github-logo.png";
-const SocialLinks = () => {
-  const [open, setOpen] = useState(false);
-
-  const GitHubLink = "https://github.com/Mohammed-HG";
-  const LinkedInLink = "https://www.linkedin.com/in/mohammed-al-ghareeb/";
-  const LinkedInImg = "https://cdn-icons-png.flaticon.com/512/174/174857.png";
-
-
+import profile from "../assets/MHG_ProfileImg.jpg";
+export default function SocialLinks() {
   return (
-    <div className="social-card">
-    
-      {/* Profile */}
-      <div className="social-content">
+    <div className="social-layout">
+      <div className="social-profile">
         <img
-          src={ProfileImg}
-          alt="Profile"
+          src={profile}
+          width="112"
+          height="112"
           className="social-avatar"
+          alt="Mohammed Alghareeb"
+          loading="lazy"
+          decoding="async"
         />
-
-        <h5 className="user-name">Mohammed-HG</h5>
-        <span className="user-skill">Web Developer</span>
-
-        <div className="social-actions">
-          <a
-            href={GitHubLink}
-            target="_blank"
-            className="click-btn1"
-          >
-            <img
-              src={GitHubImg}
-              alt="GitHub"
-              className="social-icon"
-            />
-            GitHub
-          </a>
-
-          <a
-            href={LinkedInLink}
-            target="_blank"
-            className="click-btn2"
-          >
-            <img
-              src={LinkedInImg}
-              alt="LinkedIn"
-              className="social-icon"
-            />
-            LinkedIn
-          </a>
+        <div>
+          <p className="eyebrow">LET'S CONNECT</p>
+          <h3>Mohammed Alghareeb</h3>
+          <p>Web developer · MHG</p>
         </div>
+      </div>
+      <div className="social-links">
+        <a
+          href="https://github.com/Mohammed-HG"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span>
+            <strong>GitHub</strong>
+            <small>Explore my code and projects</small>
+          </span>
+          <span aria-hidden="true">↗</span>
+        </a>
+        <a
+          href="https://www.linkedin.com/in/mohammed-al-ghareeb/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span>
+            <strong>LinkedIn</strong>
+            <small>Connect with me professionally</small>
+          </span>
+          <span aria-hidden="true">↗</span>
+        </a>
       </div>
     </div>
   );
-};
-
-export default SocialLinks;
+}
