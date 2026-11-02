@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import "../styles/SubmitForm.css";
 export default function ContactForm() {
@@ -7,6 +7,17 @@ export default function ContactForm() {
     inFlight = useRef(false);
   const siteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
   const contactEnabled = import.meta.env.VITE_CONTACT_ENABLED === "true";
+  const [captchaSize, setCaptchaSize] = useState(() =>
+    window.matchMedia?.("(max-width: 600px)")?.matches ? "compact" : "normal",
+  );
+  useEffect(() => {
+    const media = window.matchMedia?.("(max-width: 600px)");
+    if (!media) return;
+    const update = (event) =>
+      setCaptchaSize(event.matches ? "compact" : "normal");
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
   async function submit(event) {
     event.preventDefault();
     if (inFlight.current) return;
@@ -155,6 +166,8 @@ export default function ContactForm() {
         {siteKey ? (
           <div className="captcha-wrapper">
             <ReCAPTCHA
+              key={captchaSize}
+              size={captchaSize}
               ref={captcha}
               sitekey={siteKey}
               theme="dark"

@@ -134,8 +134,12 @@
 }
 .captcha-wrapper {
   max-width: 100%;
-  overflow: auto;
+  overflow-x: auto;
+  overflow-y: hidden;
   margin-bottom: 18px;
+}
+.captcha-wrapper iframe {
+  display: block;
 }
 @media (max-width: 1000px) {
   .contact-layout {
