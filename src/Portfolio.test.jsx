@@ -22,11 +22,21 @@ vi.mock("react-google-recaptcha", async () => {
 });
 beforeEach(() => {
   vi.stubEnv("VITE_RECAPTCHA_SITE_KEY", "");
+  vi.stubEnv("VITE_CONTACT_ENABLED", "true");
 });
 afterEach(() => {
   cleanup();
   vi.unstubAllEnvs();
   vi.unstubAllGlobals();
+});
+test("a configured CAPTCHA does not enable delivery before the mail provider is ready", () => {
+  vi.stubEnv("VITE_RECAPTCHA_SITE_KEY", "test-site-key");
+  vi.stubEnv("VITE_CONTACT_ENABLED", "false");
+  render(<Portfolio />);
+  expect(screen.getByRole("button", { name: "Send message ↗" }).disabled).toBe(
+    true,
+  );
+  expect(screen.getByText(/Email delivery is being configured/)).toBeTruthy();
 });
 test("navigation closes on link selection and Escape, and hidden links are not accessible", async () => {
   const user = userEvent.setup();

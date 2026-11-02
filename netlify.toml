@@ -5,6 +5,9 @@
 
 [build.environment]
   NODE_VERSION = "24"
+  # This is a public site key, not the secret verification key.
+  VITE_RECAPTCHA_SITE_KEY = "6Ld4pzUsAAAAAPeLoKfVQQHW1ve8wwgI5pHqPts0"
+  VITE_CONTACT_ENABLED = "false"
 
 [[redirects]]
   from = "/api/*"

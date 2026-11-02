@@ -6,6 +6,7 @@ export default function ContactForm() {
   const captcha = useRef(null),
     inFlight = useRef(false);
   const siteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
+  const contactEnabled = import.meta.env.VITE_CONTACT_ENABLED === "true";
   async function submit(event) {
     event.preventDefault();
     if (inFlight.current) return;
@@ -13,7 +14,7 @@ export default function ContactForm() {
     if (!form.reportValidity()) return;
     const fields = new FormData(form);
     if (fields.get("_gotcha")) return;
-    if (!siteKey) {
+    if (!siteKey || !contactEnabled) {
       setStatus({
         type: "error",
         message:
@@ -185,10 +186,16 @@ export default function ContactForm() {
             in the meantime.
           </p>
         )}
+        {siteKey && !contactEnabled && (
+          <p className="form-notice">
+            Email delivery is being configured. Please use the LinkedIn link
+            above in the meantime.
+          </p>
+        )}
         <button
           className="button button-primary submit-button"
           type="submit"
-          disabled={!siteKey || status.type === "sending"}
+          disabled={!siteKey || !contactEnabled || status.type === "sending"}
         >
           {status.type === "sending" ? "Sending…" : "Send message ↗"}
         </button>

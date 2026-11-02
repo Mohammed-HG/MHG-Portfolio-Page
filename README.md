@@ -42,6 +42,11 @@ rate limits per visitor; arbitrary headers on direct requests are not trusted.
 
 ### Contact configuration
 
+The public reCAPTCHA site key is stored in the Netlify build configuration; it is
+intentionally public. The secret verification key stays only in Render.
+Keep `VITE_CONTACT_ENABLED=false` until the mail provider is configured and tested.
+Set it to `true` in the production build configuration only after that check.
+
 Set `VITE_RECAPTCHA_SITE_KEY` in Netlify builds. Set the matching
 `RECAPTCHA_SECRET_KEY` and `RECAPTCHA_ALLOWED_HOSTNAMES=mohammed-hg-portfolio.netlify.app`
 in Render. Register this exact domain for a reCAPTCHA v2 checkbox key.
