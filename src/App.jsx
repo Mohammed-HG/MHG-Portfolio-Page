@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./styles/App.css";
 import BurgerMenu from "./components/BurgerMenu";
 import ContactForm from "./sections/SubmitForm";
@@ -12,8 +12,24 @@ const tabs = [
   { id: "SocialLinks", label: "Connect" },
 ];
 export default function Portfolio() {
-  const [active, setActive] = useState("Projects");
+  const [active, setActive] = useState(
+    () =>
+      tabs.find((tab) => "#" + tab.id === window.location.hash)?.id ||
+      "Projects",
+  );
   const buttons = useRef([]);
+  useEffect(() => {
+    let id;
+    try {
+      id = decodeURIComponent(window.location.hash.slice(1));
+    } catch {
+      return;
+    }
+    if (id)
+      document
+        .getElementById(id)
+        ?.scrollIntoView?.({ block: "start", behavior: "instant" });
+  }, []);
   function navigateTabs(event, index) {
     const offsets = { ArrowRight: 1, ArrowLeft: -1 };
     const next =

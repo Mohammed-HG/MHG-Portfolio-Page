@@ -21,8 +21,21 @@ vi.mock("react-google-recaptcha", async () => {
   };
 });
 beforeEach(() => {
+  window.history.replaceState(null, "", "/");
   vi.stubEnv("VITE_RECAPTCHA_SITE_KEY", "");
   vi.stubEnv("VITE_CONTACT_ENABLED", "true");
+});
+test("direct section links select the matching tab after the app mounts", () => {
+  window.history.replaceState(null, "", "/#Certificates");
+  render(<Portfolio />);
+  expect(
+    screen
+      .getByRole("tab", { name: "Certificates" })
+      .getAttribute("aria-selected"),
+  ).toBe("true");
+  expect(
+    screen.getByRole("heading", { name: "Responsive Web Design" }),
+  ).toBeTruthy();
 });
 afterEach(() => {
   cleanup();
