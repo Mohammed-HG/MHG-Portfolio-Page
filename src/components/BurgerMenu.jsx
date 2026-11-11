@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import "./BurgerMenu.css";
-export default function BurgerMenu() {
+export default function BurgerMenu({ copy }) {
   const [open, setOpen] = useState(false);
   const root = useRef(null),
     trigger = useRef(null);
@@ -32,20 +32,20 @@ export default function BurgerMenu() {
         aria-controls="site-navigation"
         onClick={() => setOpen((value) => !value)}
       >
-        <span>Menu</span>
+        <span>{copy.menu}</span>
         <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
           <path d={open ? "M6 6l12 12M6 18L18 6" : "M4 6h16M4 12h16M4 18h16"} />
         </svg>
       </button>
       <div id="site-navigation" className="menu-panel" hidden={!open}>
         <a href="#About" onClick={() => setOpen(false)}>
-          About me <span aria-hidden="true">01</span>
+          {copy.about} <span aria-hidden="true">01</span>
         </a>
         <a href="#Work" onClick={() => setOpen(false)}>
-          My work <span aria-hidden="true">02</span>
+          {copy.work} <span aria-hidden="true">02</span>
         </a>
         <a href="#Contact" onClick={() => setOpen(false)}>
-          Contact <span aria-hidden="true">03</span>
+          {copy.contact} <span aria-hidden="true">03</span>
         </a>
       </div>
     </div>

@@ -1,39 +1,32 @@
 import "../styles/AboutMe.css";
-export default function AboutMe() {
+export default function AboutMe({ copy }) {
   return (
     <div className="hero-grid section-shell">
       <div className="hero-copy">
         <p className="eyebrow">
-          <span className="status-dot" aria-hidden="true" /> JUNIOR WEB
-          DEVELOPER
+          <span className="status-dot" aria-hidden="true" /> {copy.roleKicker}
         </p>
         <h1>
-          Hi, I'm Mohammed.
+          {copy.hello}
           <br />
-          <span>I build for the web.</span>
+          <span>{copy.heroTitle}</span>
         </h1>
-        <p className="hero-description">
-          I'm Mohammed Alghareeb, also known as MHG. I enjoy turning ideas into
-          useful web experiences and learning something new with every build.
-        </p>
+        <p className="hero-description">{copy.intro}</p>
         <div className="hero-actions">
           <a className="button button-primary" href="#Work">
-            Explore my work <span aria-hidden="true">↗</span>
+            {copy.explore} <span aria-hidden="true">↗</span>
           </a>
           <a className="button button-secondary" href="#Contact">
-            Let's connect
+            {copy.connectAction}
           </a>
         </div>
-        <div className="hero-tags" aria-label="Interests">
-          <span>Web development</span>
-          <span>Responsive design</span>
-          <span>Continuous learning</span>
+        <div className="hero-tags" aria-label={copy.interests}>
+          <span>{copy.web}</span>
+          <span>{copy.responsive}</span>
+          <span>{copy.learning}</span>
         </div>
       </div>
-      <div
-        className="terminal"
-        aria-label="A little about my development journey"
-      >
+      <div className="terminal" dir="ltr" aria-label={copy.terminalLabel}>
         <div className="terminal-header">
           <div className="terminal-lights" aria-hidden="true">
             <i />
@@ -52,10 +45,10 @@ export default function AboutMe() {
               ▌
             </span>
           </p>
-          <p className="terminal-name">Mohammed Alghareeb</p>
-          <p className="terminal-muted">Junior web developer</p>
+          <p className="terminal-name">{copy.name}</p>
+          <p className="terminal-muted">{copy.role}</p>
           <div className="terminal-divider" />
-          <p className="terminal-comment">// always a work in progress</p>
+          <p className="terminal-comment">{copy.terminalComment}</p>
           <p>
             <span className="code-key">const</span> developer = {"{"}
           </p>
@@ -63,19 +56,26 @@ export default function AboutMe() {
             alias: <span className="code-string">'MHG'</span>,
           </p>
           <p className="code-indent">
-            focus: <span className="code-string">'Building & learning'</span>,
+            focus:{" "}
+            <span className="code-string" dir="auto">
+              {copy.building}
+            </span>
+            ,
           </p>
           <p className="code-indent">
-            next: <span className="code-string">'A better version'</span>
+            next:{" "}
+            <span className="code-string" dir="auto">
+              {copy.better}
+            </span>
           </p>
           <p>{"}"};</p>
           <p className="terminal-ready">
-            <span aria-hidden="true">✓</span> Ready for the next challenge.
+            <span aria-hidden="true">✓</span> {copy.ready}
           </p>
         </div>
       </div>
       <a className="scroll-hint" href="#Work">
-        <span aria-hidden="true">↓</span> Discover more below
+        <span aria-hidden="true">↓</span> {copy.discover}
       </a>
     </div>
   );

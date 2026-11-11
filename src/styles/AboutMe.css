@@ -52,7 +52,7 @@
 .hero-tags span + span::before {
   content: "/";
   color: #51667e;
-  margin-right: 18px;
+  margin-inline-end: 18px;
 }
 .terminal {
   min-width: 0;
@@ -138,7 +138,7 @@
   color: #8de0cb;
 }
 .code-indent {
-  padding-left: 18px;
+  padding-inline-start: 18px;
 }
 .terminal-body .terminal-ready {
   color: #a8bdce;
@@ -147,7 +147,7 @@
 }
 .terminal-ready span {
   color: var(--accent);
-  padding-right: 8px;
+  padding-inline-end: 8px;
 }
 .terminal-cursor {
   color: var(--gold);
@@ -237,7 +237,7 @@
     font-size: 10px;
   }
   .hero-tags span + span::before {
-    margin-right: 10px;
+    margin-inline-end: 10px;
   }
   .terminal-body {
     padding: 21px 17px;

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import "../styles/SubmitForm.css";
-export default function ContactForm() {
+export default function ContactForm({ copy, language }) {
   const [status, setStatus] = useState({ type: "idle", message: "" });
   const captcha = useRef(null),
     inFlight = useRef(false);
@@ -28,8 +28,7 @@ export default function ContactForm() {
     if (!siteKey || !contactEnabled) {
       setStatus({
         type: "error",
-        message:
-          "Contact form is temporarily unavailable. Please use LinkedIn instead.",
+        message: "unavailable",
       });
       return;
     }
@@ -37,12 +36,12 @@ export default function ContactForm() {
     if (!token) {
       setStatus({
         type: "error",
-        message: "Please complete the verification first.",
+        message: "verify",
       });
       return;
     }
     inFlight.current = true;
-    setStatus({ type: "sending", message: "Sending your message…" });
+    setStatus({ type: "sending", message: "sending" });
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
@@ -56,25 +55,35 @@ export default function ContactForm() {
         signal: AbortSignal.timeout(25000),
       });
       const result = await response.json().catch(() => ({}));
-      if (!response.ok || !result.ok)
-        throw new Error(
-          result.error ||
-            "Message delivery is temporarily unavailable. Please try again later.",
-        );
+      if (!response.ok || !result.ok) {
+        setStatus({
+          type: "error",
+          message:
+            response.status === 429
+              ? "rateLimit"
+              : response.status === 400 &&
+                  result.error ===
+                    "Please complete a new verification and try again."
+                ? "verifyAgain"
+                : "delivery",
+          detail: result.error,
+        });
+        return;
+      }
       form.reset();
       setStatus({
         type: "success",
-        message: "Thanks! Your message has been sent.",
+        message: "success",
       });
     } catch (error) {
       setStatus({
         type: "error",
         message:
           error.name === "TimeoutError"
-            ? "The server took too long to respond. Please try again shortly."
+            ? "timeout"
             : error.name === "TypeError"
-              ? "Unable to connect. Please check your connection and try again."
-              : error.message,
+              ? "network"
+              : "delivery",
       });
     } finally {
       inFlight.current = false;
@@ -87,39 +96,37 @@ export default function ContactForm() {
   return (
     <div className="contact-layout">
       <div className="contact-copy">
-        <p className="eyebrow">HAVE SOMETHING IN MIND?</p>
+        <p className="eyebrow">{copy.contactKicker}</p>
         <h2 id="contact-title">
-          Let's start
+          {copy.contactTitle}
           <br />
-          <span>a conversation.</span>
+          <span>{copy.contactTitleLine}</span>
         </h2>
-        <p>
-          Have a question about my work or an idea to share? I'd be happy to
-          hear from you.
-        </p>
+        <p>{copy.contactDesc}</p>
         <a
           className="text-link"
           href="https://www.linkedin.com/in/mohammed-al-ghareeb/"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Connect on LinkedIn ↗
+          {copy.contactLink}
         </a>
       </div>
       <form
         className="message-form"
         onSubmit={submit}
-        aria-label="Send a message"
+        aria-label={copy.form}
         aria-busy={status.type === "sending"}
       >
         <div className="form-grid">
           <div className="form-field">
-            <label htmlFor="contact-name">Your name</label>
+            <label htmlFor="contact-name">{copy.yourName}</label>
             <input
               id="contact-name"
               name="name"
+              dir="auto"
               autoComplete="name"
-              placeholder="How should I call you?"
+              placeholder={copy.namePlaceholder}
               minLength={1}
               maxLength={120}
               required
@@ -127,11 +134,12 @@ export default function ContactForm() {
             />
           </div>
           <div className="form-field">
-            <label htmlFor="contact-email">Email address</label>
+            <label htmlFor="contact-email">{copy.email}</label>
             <input
               id="contact-email"
               name="email"
               type="email"
+              dir="ltr"
               autoComplete="email"
               placeholder="you@example.com"
               maxLength={254}
@@ -141,21 +149,22 @@ export default function ContactForm() {
           </div>
         </div>
         <div className="form-field">
-          <label htmlFor="contact-message">Your message</label>
+          <label htmlFor="contact-message">{copy.yourMessage}</label>
           <textarea
             id="contact-message"
             name="message"
+            dir="auto"
             rows={5}
-            placeholder="Tell me a little about it…"
+            placeholder={copy.messagePlaceholder}
             minLength={1}
             maxLength={2000}
             required
             disabled={status.type === "sending"}
           />
-          <span className="field-help">Up to 2,000 characters.</span>
+          <span className="field-help">{copy.limit}</span>
         </div>
         <div hidden aria-hidden="true">
-          <label htmlFor="contact-website">Leave this blank</label>
+          <label htmlFor="contact-website">{copy.blank}</label>
           <input
             id="contact-website"
             name="_gotcha"
@@ -166,7 +175,8 @@ export default function ContactForm() {
         {siteKey ? (
           <div className="captcha-wrapper">
             <ReCAPTCHA
-              key={captchaSize}
+              key={language + captchaSize}
+              hl={language}
               size={captchaSize}
               ref={captcha}
               sitekey={siteKey}
@@ -174,43 +184,29 @@ export default function ContactForm() {
               onExpired={() =>
                 setStatus({
                   type: "error",
-                  message: "Verification expired. Please complete it again.",
+                  message: "expired",
                 })
               }
               onErrored={() =>
                 setStatus({
                   type: "error",
-                  message:
-                    "Verification could not load. Please use LinkedIn instead.",
+                  message: "captchaError",
                 })
               }
             />
           </div>
         ) : (
-          <p className="form-notice">
-            Email contact is being configured. You can reach me on{" "}
-            <a
-              href="https://www.linkedin.com/in/mohammed-al-ghareeb/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              LinkedIn
-            </a>{" "}
-            in the meantime.
-          </p>
+          <p className="form-notice">{copy.mailPending}</p>
         )}
         {siteKey && !contactEnabled && (
-          <p className="form-notice">
-            Email delivery is being configured. Please use the LinkedIn link
-            above in the meantime.
-          </p>
+          <p className="form-notice">{copy.mailNotice}</p>
         )}
         <button
           className="button button-primary submit-button"
           type="submit"
           disabled={!siteKey || !contactEnabled || status.type === "sending"}
         >
-          {status.type === "sending" ? "Sending…" : "Send message ↗"}
+          {status.type === "sending" ? copy.sendingButton : copy.sendButton}
         </button>
         <div
           className={"form-status status-" + status.type}
@@ -218,20 +214,20 @@ export default function ContactForm() {
           aria-live="polite"
           aria-atomic="true"
         >
-          {status.message}
+          {(language === "en" && status.detail) || copy[status.message]}
         </div>
         <p className="privacy-note">
-          Your details are used only to reply to your message.
+          {copy.privacyNote}
           {siteKey && (
             <>
               {" "}
-              This form uses Google reCAPTCHA.{" "}
+              {copy.captchaNote}{" "}
               <a
                 href="https://policies.google.com/privacy"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Privacy
+                {copy.privacy}
               </a>{" "}
               ·{" "}
               <a
@@ -239,7 +235,7 @@ export default function ContactForm() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Terms
+                {copy.terms}
               </a>
               .
             </>

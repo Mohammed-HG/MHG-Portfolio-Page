@@ -161,3 +161,38 @@ test("delivery errors remain visible without showing a false success", async () 
     ),
   );
 });
+
+test("Arabic localizes the portfolio, mirrors tab navigation and persists the selection", async () => {
+  const user = userEvent.setup();
+  const { unmount } = render(<Portfolio />);
+  const projectUrl =
+    "https://github.com/Mohammed-HG/win-desktop-pop-up-folder-project";
+  expect(
+    screen.getByRole("link", { name: /Private repository on GitHub/ }).href,
+  ).toBe(projectUrl);
+
+  await user.click(screen.getByRole("button", { name: "العربية" }));
+  expect(document.documentElement.lang).toBe("ar");
+  expect(document.documentElement.dir).toBe("rtl");
+  expect(
+    screen.getByRole("heading", { name: "مجلدات سطح المكتب المنبثقة" }),
+  ).toBeTruthy();
+  expect(screen.getByRole("link", { name: /مستودع خاص/ }).href).toBe(
+    projectUrl,
+  );
+  expect(screen.getByLabelText("رسالتك")).toBeTruthy();
+  screen.getByRole("tab", { name: "المشاريع" }).focus();
+  await user.keyboard("{ArrowLeft}");
+  expect(
+    screen.getByRole("tab", { name: "الشهادات" }).getAttribute("aria-selected"),
+  ).toBe("true");
+
+  unmount();
+  render(<Portfolio />);
+  expect(screen.getByRole("tab", { name: "المشاريع" })).toBeTruthy();
+  await user.click(screen.getByRole("button", { name: "English" }));
+  expect(document.documentElement.dir).toBe("ltr");
+  expect(
+    screen.getByRole("heading", { name: "Windows Desktop Pop-up Folders" }),
+  ).toBeTruthy();
+});

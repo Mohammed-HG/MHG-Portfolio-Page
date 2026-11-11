@@ -1,6 +1,6 @@
 import "../styles/Cert.css";
 import certificate from "../assets/freecodecamCert.jpg";
-export default function Certifications() {
+export default function Certifications({ copy }) {
   return (
     <div className="certificate-layout">
       <a
@@ -8,32 +8,29 @@ export default function Certifications() {
         href="https://www.freecodecamp.org/certification/mohammed-hg/responsive-web-design"
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="View my Responsive Web Design certificate"
+        aria-label={copy.certLabel}
       >
         <img
           src={certificate}
           width="1625"
           height="1016"
-          alt="Mohammed Alghareeb's freeCodeCamp Responsive Web Design certificate"
+          alt={copy.certAlt}
           loading="lazy"
           decoding="async"
         />
       </a>
       <div className="certificate-copy">
-        <p className="eyebrow">LEARNING MILESTONE</p>
+        <p className="eyebrow">{copy.certKicker}</p>
         <span className="certificate-badge">freeCodeCamp</span>
-        <h3>Responsive Web Design</h3>
-        <p>
-          A foundation in HTML, CSS and building layouts that adapt to different
-          screens.
-        </p>
+        <h3>{copy.certTitle}</h3>
+        <p>{copy.certDescription}</p>
         <a
           className="button button-secondary"
           href="https://www.freecodecamp.org/certification/mohammed-hg/responsive-web-design"
           target="_blank"
           rel="noopener noreferrer"
         >
-          View verified certificate ↗
+          {copy.certLink}
         </a>
       </div>
     </div>

@@ -100,3 +100,60 @@
     font-size: 14px;
   }
 }
+
+.project-layout + .project-layout {
+  border-block-start: 1px solid var(--border);
+  margin-block-start: 32px;
+  padding-block-start: 32px;
+}
+
+.desktop-visual {
+  background:
+    radial-gradient(ellipse at 65% 25%, #2c4e8988, transparent 85%), #141f36;
+  border-color: #3b5375;
+}
+
+.desktop-preview {
+  width: min(175px, 80%);
+  position: relative;
+  border-radius: 12px;
+  background: #1b2d49;
+  border: 1px solid #7795c0;
+  box-shadow: 0 15px 35px #0005;
+  overflow: hidden;
+}
+
+.desktop-preview-bar {
+  display: flex;
+  gap: 6px;
+  padding: 11px;
+  background: #2e4566;
+}
+
+.desktop-preview-bar i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #a9c5ee;
+}
+
+.desktop-preview-icons {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  padding: 16px;
+}
+
+.desktop-preview-icons i {
+  aspect-ratio: 1;
+  border-radius: 7px;
+  background: #a9c5ee;
+}
+
+.desktop-preview-icons i:nth-child(3n + 2) {
+  background: var(--accent);
+}
+
+.desktop-preview-icons i:nth-child(3n) {
+  background: var(--gold);
+}

@@ -1,3 +1,4 @@
+import { translations } from "./translations";
 import { useEffect, useRef, useState } from "react";
 import "./styles/App.css";
 import BurgerMenu from "./components/BurgerMenu";
@@ -6,16 +7,32 @@ import SocialLinks from "./sections/socialLinks";
 import AboutMe from "./sections/aboutMeSection";
 import Certifications from "./sections/CertificationSection";
 import Projects from "./sections/projectsSection";
-const tabs = [
-  { id: "Projects", label: "Projects" },
-  { id: "Certificates", label: "Certificates" },
-  { id: "SocialLinks", label: "Connect" },
-];
+const tabs = ["Projects", "Certificates", "SocialLinks"];
+const languageKey = "portfolio-language";
+
+function getLanguage() {
+  try {
+    return localStorage.getItem(languageKey) === "ar" ? "ar" : "en";
+  } catch {
+    return "en";
+  }
+}
 export default function Portfolio() {
+  const [language, setLanguage] = useState(getLanguage);
+  const copy = translations[language];
+  const rtl = language === "ar";
+  useEffect(() => {
+    document.documentElement.lang = language;
+    document.documentElement.dir = rtl ? "rtl" : "ltr";
+    document.title = copy.pageTitle;
+    try {
+      localStorage.setItem(languageKey, language);
+    } catch {
+      // Language switching still works when storage is unavailable.
+    }
+  }, [language, rtl, copy]);
   const [active, setActive] = useState(
-    () =>
-      tabs.find((tab) => "#" + tab.id === window.location.hash)?.id ||
-      "Projects",
+    () => tabs.find((tab) => "#" + tab === window.location.hash) || "Projects",
   );
   const buttons = useRef([]);
   useEffect(() => {
@@ -31,7 +48,7 @@ export default function Portfolio() {
         ?.scrollIntoView?.({ block: "start", behavior: "instant" });
   }, []);
   function navigateTabs(event, index) {
-    const offsets = { ArrowRight: 1, ArrowLeft: -1 };
+    const offsets = { ArrowRight: rtl ? -1 : 1, ArrowLeft: rtl ? 1 : -1 };
     const next =
       event.key === "Home"
         ? 0
@@ -42,30 +59,40 @@ export default function Portfolio() {
             : null;
     if (next === null) return;
     event.preventDefault();
-    setActive(tabs[next].id);
+    setActive(tabs[next]);
     buttons.current[next]?.focus();
   }
   return (
     <>
       <a className="skip-link" href="#main-content">
-        Skip to content
+        {copy.skip}
       </a>
       <header className="site-header">
-        <nav className="navbar" aria-label="Main navigation">
+        <nav className="navbar" aria-label={copy.nav}>
           <a className="brand" href="#About">
             <span className="brand-symbol" aria-hidden="true">
               &lt;/&gt;
             </span>
             <span>
-              MHG<span className="brand-detail"> / Portfolio</span>
+              MHG<span className="brand-detail">{copy.portfolio}</span>
             </span>
           </a>
-          <BurgerMenu />
+          <div className="nav-actions">
+            <button
+              className="menu-trigger language-switch"
+              type="button"
+              lang={rtl ? "en" : "ar"}
+              onClick={() => setLanguage(rtl ? "en" : "ar")}
+            >
+              {rtl ? "English" : "العربية"}
+            </button>
+            <BurgerMenu copy={copy} />
+          </div>
         </nav>
       </header>
       <main id="main-content">
         <section id="About" className="hero">
-          <AboutMe />
+          <AboutMe copy={copy} />
         </section>
         <section
           id="Work"
@@ -74,35 +101,35 @@ export default function Portfolio() {
         >
           <div className="section-heading">
             <div>
-              <p className="eyebrow">BUILD. LEARN. IMPROVE.</p>
-              <h2 id="work-title">A look at my work</h2>
+              <p className="eyebrow">{copy.workKicker}</p>
+              <h2 id="work-title">{copy.workTitle}</h2>
             </div>
             <span className="section-number" aria-hidden="true">
-              01 / WORK
+              {copy.workIndex}
             </span>
           </div>
           <div className="work-surface">
             <div
               className="work-tabs"
               role="tablist"
-              aria-label="Explore my portfolio"
+              aria-label={copy.tabsLabel}
             >
               {tabs.map((tab, index) => (
                 <button
-                  key={tab.id}
+                  key={tab}
                   ref={(element) => {
                     buttons.current[index] = element;
                   }}
-                  id={"tab-" + tab.id}
+                  id={"tab-" + tab}
                   type="button"
                   role="tab"
-                  aria-selected={active === tab.id}
-                  aria-controls={tab.id}
-                  tabIndex={active === tab.id ? 0 : -1}
-                  onClick={() => setActive(tab.id)}
+                  aria-selected={active === tab}
+                  aria-controls={tab}
+                  tabIndex={active === tab ? 0 : -1}
+                  onClick={() => setActive(tab)}
                   onKeyDown={(event) => navigateTabs(event, index)}
                 >
-                  {tab.label}
+                  {copy[tab]}
                 </button>
               ))}
             </div>
@@ -113,7 +140,7 @@ export default function Portfolio() {
               hidden={active !== "Projects"}
               tabIndex={0}
             >
-              <Projects />
+              <Projects copy={copy} />
             </div>
             <div
               id="Certificates"
@@ -122,7 +149,7 @@ export default function Portfolio() {
               hidden={active !== "Certificates"}
               tabIndex={0}
             >
-              <Certifications />
+              <Certifications copy={copy} />
             </div>
             <div
               id="SocialLinks"
@@ -131,7 +158,7 @@ export default function Portfolio() {
               hidden={active !== "SocialLinks"}
               tabIndex={0}
             >
-              <SocialLinks />
+              <SocialLinks copy={copy} />
             </div>
           </div>
         </section>
@@ -140,14 +167,14 @@ export default function Portfolio() {
           className="contact-section section-shell"
           aria-labelledby="contact-title"
         >
-          <ContactForm />
+          <ContactForm copy={copy} language={language} />
         </section>
       </main>
       <footer className="site-footer section-shell">
         <a className="brand" href="#About">
-          MHG<span className="brand-detail"> / Portfolio</span>
+          MHG<span className="brand-detail">{copy.portfolio}</span>
         </a>
-        <p>Built with curiosity. Improved with every project.</p>
+        <p>{copy.footer}</p>
         <a
           href="https://github.com/Mohammed-HG"
           target="_blank"

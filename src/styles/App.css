@@ -69,7 +69,7 @@ button:disabled {
 .skip-link {
   position: fixed;
   top: 12px;
-  left: 12px;
+  inset-inline-start: 12px;
   transform: translateY(-180%);
   z-index: 100;
   background: var(--accent);
@@ -354,5 +354,24 @@ h3 {
   *::after {
     animation: none !important;
     transition: none !important;
+  }
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+:lang(ar) {
+  letter-spacing: normal;
+}
+
+@media (max-width: 420px) {
+  .navbar {
+    gap: 8px;
+  }
+  .navbar .brand-detail {
+    display: none;
   }
 }

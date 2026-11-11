@@ -1,6 +1,6 @@
 import "../styles/SocialLinks.css";
 import profile from "../assets/MHG_ProfileImg.jpg";
-export default function SocialLinks() {
+export default function SocialLinks({ copy }) {
   return (
     <div className="social-layout">
       <div className="social-profile">
@@ -9,14 +9,14 @@ export default function SocialLinks() {
           width="112"
           height="112"
           className="social-avatar"
-          alt="Mohammed Alghareeb"
+          alt={copy.name}
           loading="lazy"
           decoding="async"
         />
         <div>
-          <p className="eyebrow">LET'S CONNECT</p>
-          <h3>Mohammed Alghareeb</h3>
-          <p>Web developer · MHG</p>
+          <p className="eyebrow">{copy.socialKicker}</p>
+          <h3>{copy.name}</h3>
+          <p>{copy.socialRole}</p>
         </div>
       </div>
       <div className="social-links">
@@ -27,7 +27,7 @@ export default function SocialLinks() {
         >
           <span>
             <strong>GitHub</strong>
-            <small>Explore my code and projects</small>
+            <small>{copy.github}</small>
           </span>
           <span aria-hidden="true">↗</span>
         </a>
@@ -38,7 +38,7 @@ export default function SocialLinks() {
         >
           <span>
             <strong>LinkedIn</strong>
-            <small>Connect with me professionally</small>
+            <small>{copy.linkedin}</small>
           </span>
           <span aria-hidden="true">↗</span>
         </a>
