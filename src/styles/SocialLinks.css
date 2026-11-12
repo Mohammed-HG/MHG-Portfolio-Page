@@ -38,8 +38,7 @@
 .social-links > a {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 20px;
+  gap: 12px;
   border: 1px solid #3a506a;
   background: #14253b;
   padding: 22px;
@@ -83,4 +82,27 @@
   .social-profile h3 {
     font-size: 21px;
   }
+}
+
+.social-link-copy {
+  flex: 1;
+  min-width: 0;
+}
+
+.social-icon {
+  flex: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+}
+
+.linkedin-icon {
+  display: grid;
+  place-items: center;
+  background: #0a66c2;
+  color: white;
+  font:
+    700 25px/1 Arial,
+    sans-serif;
+  direction: ltr;
 }

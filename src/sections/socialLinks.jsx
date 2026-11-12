@@ -1,4 +1,5 @@
 import "../styles/SocialLinks.css";
+import githubLogo from "../assets/github-logo.png";
 import profile from "../assets/MHG_ProfileImg.jpg";
 export default function SocialLinks({ copy }) {
   return (
@@ -16,7 +17,9 @@ export default function SocialLinks({ copy }) {
         <div>
           <p className="eyebrow">{copy.socialKicker}</p>
           <h3>{copy.name}</h3>
-          <p>{copy.socialRole}</p>
+          <p>
+            {copy.socialRole} · <bdi>Mohammed-HG</bdi>
+          </p>
         </div>
       </div>
       <div className="social-links">
@@ -25,7 +28,14 @@ export default function SocialLinks({ copy }) {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <span>
+          <img
+            className="social-icon github-icon"
+            src={githubLogo}
+            alt=""
+            width="36"
+            height="36"
+          />
+          <span className="social-link-copy">
             <strong>GitHub</strong>
             <small>{copy.github}</small>
           </span>
@@ -36,7 +46,10 @@ export default function SocialLinks({ copy }) {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <span>
+          <span className="social-icon linkedin-icon" aria-hidden="true">
+            in
+          </span>
+          <span className="social-link-copy">
             <strong>LinkedIn</strong>
             <small>{copy.linkedin}</small>
           </span>

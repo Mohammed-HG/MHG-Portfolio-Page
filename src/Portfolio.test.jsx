@@ -181,7 +181,7 @@ test("Arabic localizes the portfolio, mirrors tab navigation and persists the se
   ).toBeTruthy();
   expect(
     screen
-      .getAllByRole("link", { name: "السورس كود ↗" })
+      .getAllByRole("link", { name: "مصدر الكود ↗" })
       .map((link) => link.href),
   ).toContain(projectUrl);
   expect(screen.getByText("لينكس")).toBeTruthy();
