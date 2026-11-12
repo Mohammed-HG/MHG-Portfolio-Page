@@ -166,20 +166,26 @@ test("Arabic localizes the portfolio, mirrors tab navigation and persists the se
   const user = userEvent.setup();
   const { unmount } = render(<Portfolio />);
   const projectUrl =
-    "https://github.com/Mohammed-HG/win-desktop-pop-up-folder-project";
+    "https://github.com/Mohammed-HG/desktop-pop-up-folder-project";
   expect(
-    screen.getByRole("link", { name: /Private repository on GitHub/ }).href,
-  ).toBe(projectUrl);
+    screen
+      .getAllByRole("link", { name: "Source code ↗" })
+      .map((link) => link.href),
+  ).toContain(projectUrl);
 
   await user.click(screen.getByRole("button", { name: "العربية" }));
   expect(document.documentElement.lang).toBe("ar");
   expect(document.documentElement.dir).toBe("rtl");
   expect(
-    screen.getByRole("heading", { name: "مجلدات سطح المكتب المنبثقة" }),
+    screen.getByRole("heading", { name: "Desktop Pop-up folder" }),
   ).toBeTruthy();
-  expect(screen.getByRole("link", { name: /مستودع خاص/ }).href).toBe(
-    projectUrl,
-  );
+  expect(
+    screen
+      .getAllByRole("link", { name: "السورس كود ↗" })
+      .map((link) => link.href),
+  ).toContain(projectUrl);
+  expect(screen.getByText("لينكس")).toBeTruthy();
+  expect(screen.getByText("هلا، أنا محمد.")).toBeTruthy();
   expect(screen.getByLabelText("رسالتك")).toBeTruthy();
   screen.getByRole("tab", { name: "المشاريع" }).focus();
   await user.keyboard("{ArrowLeft}");
@@ -193,6 +199,6 @@ test("Arabic localizes the portfolio, mirrors tab navigation and persists the se
   await user.click(screen.getByRole("button", { name: "English" }));
   expect(document.documentElement.dir).toBe("ltr");
   expect(
-    screen.getByRole("heading", { name: "Windows Desktop Pop-up Folders" }),
+    screen.getByRole("heading", { name: "Desktop Pop-up folder" }),
   ).toBeTruthy();
 });

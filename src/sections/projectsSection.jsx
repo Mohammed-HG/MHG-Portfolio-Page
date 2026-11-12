@@ -61,19 +61,22 @@ export default function Projects({ copy }) {
         </div>
         <div className="project-copy">
           <p className="eyebrow">{copy.desktopKicker}</p>
-          <h3>{copy.desktopTitle}</h3>
+          <h3>
+            <bdi lang="en">{copy.desktopTitle}</bdi>
+          </h3>
           <p>{copy.desktopDesc}</p>
           <ul className="technology-tags" aria-label={copy.tech}>
             <li>{copy.desktopPlatform}</li>
+            <li>{copy.desktopLinux}</li>
           </ul>
           <div className="project-links">
             <a
               className="text-link"
-              href="https://github.com/Mohammed-HG/win-desktop-pop-up-folder-project"
+              href="https://github.com/Mohammed-HG/desktop-pop-up-folder-project"
               target="_blank"
               rel="noopener noreferrer"
             >
-              {copy.desktopLink}
+              {copy.source}
             </a>
           </div>
         </div>
