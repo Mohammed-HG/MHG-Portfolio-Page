@@ -52,7 +52,7 @@ export default function ContactForm({ copy, language }) {
           message: fields.get("message").trim(),
           recaptchaToken: token,
         }),
-        signal: AbortSignal.timeout(25000),
+        signal: AbortSignal.timeout(90000),
       });
       const result = await response.json().catch(() => ({}));
       if (!response.ok || !result.ok) {
